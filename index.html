@@ -1610,8 +1610,14 @@
         function validateBookingTime(dateTimeValue) {
             const selectedDate = new Date(dateTimeValue);
             const now = new Date();
-            const thirtyMinutesFromNow = new Date(now.getTime() * 60 * 1000);
-
+            const thirtyMinutesFromNow = new Date(now.getTime() + 30 * 60 * 1000);
+            
+            if (selectedDate < thirtyMinutesFromNow) {
+                const errorMessage = currentLanguage === 'ar' ? 
+                    'يجب أن يكون موعد الحجز بعد 30 دقيقة على الأقل من الوقت الحالي' :
+                    'Booking time must be at least 30 minutes from now';
+                alert(errorMessage);
+                return false;
             }
             return true;
         }
