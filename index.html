@@ -2053,44 +2053,44 @@
         }
 
         // Close modals when clicking outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('captainModal');
-            const imageModal = document.getElementById('imageModal');
-            const helpMenu = document.getElementById('helpMenu');
-            const helpToggle = document.querySelector('.help-toggle');
-            
-            if (event.target === modal) {
-                closeModal();
-            }
-            if (event.target === imageModal) {
-                closeImageModal();
-            }
-            if (!helpToggle.contains(event.target) && !helpMenu.contains(event.target)) {
-                helpMenu.classList.remove('show');
-            }
-        }
+        <script>
+  /* إغلاق النوافذ المنبثقة وقائمة المساعدة عند الضغط خارجها */
+  window.onclick = function (event) {
+    const modal       = document.getElementById('captainModal');
+    const imageModal  = document.getElementById('imageModal');
+    const helpMenu    = document.getElementById('helpMenu');
+    const helpToggle  = document.querySelector('.help-toggle');
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            renderCaptains('salon');
-            renderCaptains('home');
-            updateLanguageContent();
-        });
-    </script>
+    if (event.target === modal)        closeModal();
+    if (event.target === imageModal)   closeImageModal();
+    if (
+      helpMenu && helpToggle &&
+      !helpToggle.contains(event.target) &&
+      !helpMenu.contains(event.target)
+    ) {
+      helpMenu.classList.remove('show');
+    }
+  };
 
-<script>
+  /* الانتقال إلى صفحة الدفع */
   function proceedToPayment() {
     window.location.href = "payments-spa.html";
   }
-</script>
-    <script>
-  window.addEventListener('DOMContentLoaded', () => {
-    if (currentLanguage === 'en') {
-      toggleLanguage();
+
+  /* تهيئة الصفحة بعد التحميل */
+  document.addEventListener('DOMContentLoaded', () => {
+    // عرض الكابتنـز
+    renderCaptains('salon');
+    renderCaptains('home');
+
+    // تحديث النصوص وفق اللغة الحالية
+    updateLanguageContent();
+
+    // إذا كانت اللغة الافتراضية هى الإنجليزية، فعِّلها مرة واحدة
+    if (typeof currentLanguage !== 'undefined' && currentLanguage === 'en') {
+      toggleLanguage();        // يطبّق الإنجليزية دون إعادة التبديل
     }
   });
 </script>
 </body>
-</html>
-
 </html>
