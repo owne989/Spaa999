@@ -2051,18 +2051,17 @@
                 option.textContent = option.getAttribute(`data-${currentLanguage}`);
             });
         }
-
-        // Close modals when clicking outside
-        <script>
+        
+  <script>
   /* إغلاق النوافذ المنبثقة وقائمة المساعدة عند الضغط خارجها */
   window.onclick = function (event) {
-    const modal       = document.getElementById('captainModal');
-    const imageModal  = document.getElementById('imageModal');
-    const helpMenu    = document.getElementById('helpMenu');
-    const helpToggle  = document.querySelector('.help-toggle');
+    const modal      = document.getElementById('captainModal');
+    const imageModal = document.getElementById('imageModal');
+    const helpMenu   = document.getElementById('helpMenu');
+    const helpToggle = document.querySelector('.help-toggle');
 
-    if (event.target === modal)        closeModal();
-    if (event.target === imageModal)   closeImageModal();
+    if (event.target === modal)      closeModal();
+    if (event.target === imageModal) closeImageModal();
     if (
       helpMenu && helpToggle &&
       !helpToggle.contains(event.target) &&
@@ -2077,18 +2076,15 @@
     window.location.href = "payments-spa.html";
   }
 
-  /* تهيئة الصفحة بعد التحميل */
+  /* التهيئة بعد تحميل الصفحة */
   document.addEventListener('DOMContentLoaded', () => {
-    // عرض الكابتنـز
+    // بناء بطاقات الكابتن
     renderCaptains('salon');
     renderCaptains('home');
 
-    // تحديث النصوص وفق اللغة الحالية
-    updateLanguageContent();
-
-    // إذا كانت اللغة الافتراضية هى الإنجليزية، فعِّلها مرة واحدة
-    if (typeof currentLanguage !== 'undefined' && currentLanguage === 'en') {
-      toggleLanguage();        // يطبّق الإنجليزية دون إعادة التبديل
+    // افتراضيًا: بدّل إلى الإنجليزية مرّة واحدة
+    if (currentLanguage === 'ar') {
+      toggleLanguage();   // تُصبح currentLanguage = 'en' وتُحدَّث النصوص
     }
   });
 </script>
