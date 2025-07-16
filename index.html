@@ -1,11 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Royal Blades - حجز خدمة المساج</title>
+    <title>Royal Blades - Massage Service Booking</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,34 +16,44 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             color: #ffffff;
-            direction: rtl;
+            direction: ltr;
             transition: all 0.3s ease;
+        }
+
+        body.arabic {
+            direction: rtl;
+            font-family: 'Amiri', serif;
         }
 
         .language-toggle {
             position: fixed;
             top: 20px;
-            left: 20px;
-            background: #f0c040;
+            right: 20px;
+            background: linear-gradient(135deg, #f0c040, #e6b33a);
             color: #000;
             border: none;
-            padding: 12px 20px;
+            padding: 12px 24px;
             border-radius: 25px;
             cursor: pointer;
             font-weight: bold;
             font-size: 14px;
             transition: all 0.3s ease;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(240, 192, 64, 0.3);
         }
 
         .language-toggle:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 6px 20px rgba(240, 192, 64, 0.4);
+        }
+
+        body.arabic .language-toggle {
+            left: 20px;
+            right: auto;
         }
 
         /* Welcome Modal */
@@ -65,13 +77,13 @@
             backdrop-filter: blur(30px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 24px;
-            padding: 1.8rem;
+            padding: 2rem;
             text-align: center;
-            max-width: 350px;
-            width: 88%;
+            max-width: 400px;
+            width: 90%;
             position: relative;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            animation: slideUp 0.5s ease;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.6s ease;
         }
 
         @keyframes fadeIn {
@@ -82,7 +94,7 @@
         @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(30px) scale(0.95);
+                transform: translateY(40px) scale(0.9);
             }
             to {
                 opacity: 1;
@@ -92,50 +104,51 @@
 
         .welcome-content h2 {
             color: #f0c040;
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-bottom: 1rem;
             font-weight: 700;
-            letter-spacing: -0.5px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .welcome-content .subtitle {
-            font-size: 0.95rem;
+            font-size: 1rem;
             margin-bottom: 1.5rem;
-            line-height: 1.4;
+            line-height: 1.5;
             opacity: 0.9;
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .promo-code {
             background: linear-gradient(135deg, #f0c040, #e6b33a);
             color: #000;
-            padding: 1rem 1.8rem;
+            padding: 1.2rem 2rem;
             border-radius: 16px;
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             font-weight: 800;
             margin: 1.5rem 0;
             letter-spacing: 2px;
-            box-shadow: 0 8px 20px rgba(240, 192, 64, 0.3);
+            box-shadow: 0 8px 20px rgba(240, 192, 64, 0.4);
             animation: pulse 2.5s infinite;
         }
 
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+            50% { transform: scale(1.05); }
         }
 
         .discount-text {
             color: #f0c040;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 600;
             margin: 1rem 0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
         }
 
         .welcome-description {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             margin-bottom: 1.5rem;
             opacity: 0.85;
-            line-height: 1.4;
+            line-height: 1.5;
             color: rgba(255, 255, 255, 0.8);
         }
 
@@ -143,19 +156,19 @@
             background: linear-gradient(135deg, #f0c040, #e6b33a);
             color: #000;
             border: none;
-            padding: 1rem 2.2rem;
+            padding: 1.2rem 2.5rem;
             border-radius: 16px;
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 1.1rem;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             letter-spacing: 0.5px;
-            box-shadow: 0 6px 16px rgba(240, 192, 64, 0.3);
+            box-shadow: 0 8px 20px rgba(240, 192, 64, 0.3);
         }
 
         .welcome-close-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(240, 192, 64, 0.4);
+            box-shadow: 0 12px 25px rgba(240, 192, 64, 0.5);
         }
 
         /* Captain Confirmation Modal */
@@ -178,28 +191,28 @@
             backdrop-filter: blur(30px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 24px;
-            padding: 1.8rem;
+            padding: 2rem;
             text-align: center;
-            max-width: 380px;
-            width: 88%;
+            max-width: 450px;
+            width: 90%;
             position: relative;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            animation: slideUp 0.5s ease;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.6s ease;
         }
 
         .captain-confirmation-content img {
-            width: 90px;
-            height: 90px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 1rem;
-            border: 3px solid #f0c040;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 1.5rem;
+            border: 4px solid #f0c040;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
         .captain-message {
-            font-size: 0.95rem;
-            line-height: 1.5;
+            font-size: 1rem;
+            line-height: 1.6;
             margin-bottom: 1.5rem;
             background: rgba(255, 255, 255, 0.1);
             padding: 1.5rem;
@@ -221,7 +234,7 @@
             display: flex;
             justify-content: space-between;
             margin: 0.8rem 0;
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
 
         .price-row.total {
@@ -229,7 +242,7 @@
             padding-top: 1rem;
             margin-top: 1rem;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #f0c040;
         }
 
@@ -241,239 +254,26 @@
             background: linear-gradient(135deg, #f0c040, #e6b33a);
             color: #000;
             border: none;
-            padding: 1rem 2.5rem;
+            padding: 1.2rem 3rem;
             border-radius: 16px;
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 1.1rem;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             margin: 0.5rem;
             letter-spacing: 0.5px;
-            box-shadow: 0 6px 16px rgba(240, 192, 64, 0.3);
+            box-shadow: 0 8px 20px rgba(240, 192, 64, 0.3);
         }
 
         .continue-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(240, 192, 64, 0.4);
+            box-shadow: 0 12px 25px rgba(240, 192, 64, 0.5);
         }
 
-        .countdown {
-            color: #f0c040;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            font-weight: 500;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 0.8rem;
-            border-radius: 12px;
-            opacity: 0.8;
-        }
-
-        /* Help Section */
-        .help-section {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1500;
-        }
-
-        .help-toggle {
-            background: linear-gradient(135deg, #f0c040, #e6b33a);
-            color: #000;
-            border: none;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 8px 25px rgba(240, 192, 64, 0.4);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .help-toggle:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(240, 192, 64, 0.6);
-        }
-
-        .help-menu {
-            position: absolute;
-            bottom: 80px;
-            right: 0;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            padding: 1.5rem;
-            min-width: 300px;
-            max-width: 320px;
-            display: none;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            animation: slideUp 0.4s ease;
-            text-align: center;
-        }
-
-        .help-menu.show {
-            display: block;
-        }
-
-        .help-title {
-            color: #f0c040;
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .location-info {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 1rem;
-            border-radius: 15px;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .location-title {
-            color: #f0c040;
-            font-weight: bold;
-            font-size: 0.95rem;
-            margin-bottom: 0.6rem;
-        }
-
-        .location-address {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.8rem;
-            line-height: 1.3;
-        }
-
-        .notice-text {
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 0.75rem;
-            line-height: 1.4;
-            margin-bottom: 1rem;
-            background: rgba(240, 192, 64, 0.1);
-            padding: 0.8rem;
-            border-radius: 12px;
-            border: 1px solid rgba(240, 192, 64, 0.2);
-        }
-
-        .social-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-        }
-
-        .social-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
-            padding: 0.8rem 1rem;
-            border-radius: 25px;
-            text-decoration: none;
-            color: #fff;
-            font-weight: 600;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .social-btn.facebook {
-            background: #1877f2;
-            box-shadow: 0 3px 10px rgba(24, 119, 242, 0.4);
-        }
-
-        .social-btn.instagram {
-            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-            box-shadow: 0 3px 10px rgba(228, 64, 95, 0.4);
-        }
-
-        .social-btn.whatsapp {
-            background: #25d366;
-            box-shadow: 0 3px 10px rgba(37, 211, 102, 0.4);
-        }
-
-        .social-btn:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .social-btn:active {
-            transform: translateY(0) scale(0.98);
-        }
-
-        .social-icon {
-            width: 22px;
-            height: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        .social-btn.facebook .social-icon {
-            background: rgba(255, 255, 255, 1);
-            color: #1877f2;
-        }
-
-        .social-btn.instagram .social-icon {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            color: white;
-        }
-
-        .social-btn.whatsapp .social-icon {
-            background: rgba(255, 255, 255, 1);
-            color: #25d366;
-        }
-
-        .price-breakdown {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 1.5rem;
-            border-radius: 16px;
-            margin: 1.5rem 0;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .price-row {
-            display: flex;
-            justify-content: space-between;
-            margin: 0.8rem 0;
-            font-size: 0.95rem;
-        }
-
-        .price-row.total {
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            padding-top: 1rem;
-            margin-top: 1rem;
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: #f0c040;
-        }
-
-        .price-row.discount {
-            color: #4CAF50;
-        }
-
-        body.english .help-section {
-            right: auto;
-            left: 30px;
-        }
-
-        body.english .help-menu {
-            right: auto;
-            left: 0;
-        }
-
+        /* Header */
         .header {
             text-align: center;
-            padding: 3rem 0;
+            padding: 4rem 0;
             background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(15px);
             position: relative;
@@ -497,19 +297,22 @@
         }
 
         .header h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
             color: #f0c040;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
             position: relative;
             z-index: 1;
+            font-weight: 800;
         }
 
         .header p {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             opacity: 0.95;
             position: relative;
             z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .container {
@@ -521,7 +324,7 @@
         .tab-buttons {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 2rem;
             margin-bottom: 3rem;
             flex-wrap: wrap;
         }
@@ -530,10 +333,10 @@
             background: rgba(255, 255, 255, 0.1);
             color: #fff;
             border: 2px solid transparent;
-            padding: 1.2rem 2.5rem;
-            border-radius: 20px;
-            font-size: 1.2rem;
-            font-weight: bold;
+            padding: 1.5rem 3rem;
+            border-radius: 25px;
+            font-size: 1.3rem;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
@@ -559,23 +362,23 @@
         .tab-btn:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
 
         .tab-btn.active {
             background: linear-gradient(135deg, #f0c040, #e6b33a);
             color: #000;
             border-color: #f0c040;
-            box-shadow: 0 8px 25px rgba(240, 192, 64, 0.4);
+            box-shadow: 0 10px 30px rgba(240, 192, 64, 0.4);
         }
 
         .form-section {
             display: none;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
-            border-radius: 25px;
+            border-radius: 30px;
             padding: 3rem;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
@@ -597,11 +400,11 @@
 
         .form-title {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 2.5rem;
             color: #f0c040;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            font-weight: bold;
+            font-weight: 800;
         }
 
         .form-grid {
@@ -615,50 +418,55 @@
         }
 
         .input-group input,
-        .input-group select {
+        .input-group select,
+        .input-group textarea {
             width: 100%;
-            padding: 1.2rem 1.5rem;
+            padding: 1.5rem 1.8rem;
             border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 15px;
+            border-radius: 18px;
             background: rgba(255, 255, 255, 0.1);
             color: #fff;
             font-size: 1.1rem;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
+            font-weight: 500;
         }
 
         .input-group input:focus,
-        .input-group select:focus {
+        .input-group select:focus,
+        .input-group textarea:focus {
             outline: none;
             border-color: #f0c040;
             background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 20px rgba(240, 192, 64, 0.3);
+            box-shadow: 0 0 25px rgba(240, 192, 64, 0.3);
             transform: translateY(-2px);
         }
 
-        .input-group input::placeholder {
+        .input-group input::placeholder,
+        .input-group textarea::placeholder {
             color: rgba(255, 255, 255, 0.7);
         }
 
         .input-group select option {
             background: #2c3e50;
             color: #fff;
+            padding: 10px;
         }
 
         /* Promo Code Section */
         .promo-section {
             background: linear-gradient(135deg, rgba(240, 192, 64, 0.15), rgba(240, 192, 64, 0.05));
             border: 2px dashed #f0c040;
-            border-radius: 20px;
-            padding: 2rem;
+            border-radius: 25px;
+            padding: 2.5rem;
             margin: 2.5rem 0;
             backdrop-filter: blur(10px);
         }
 
         .promo-title {
             color: #f0c040;
-            font-size: 1.4rem;
-            font-weight: bold;
+            font-size: 1.5rem;
+            font-weight: 700;
             margin-bottom: 1.5rem;
             text-align: center;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
@@ -673,9 +481,9 @@
 
         .promo-input {
             flex: 1;
-            padding: 1.2rem;
+            padding: 1.5rem;
             border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 15px;
+            border-radius: 18px;
             background: rgba(255, 255, 255, 0.1);
             color: #fff;
             font-size: 1.1rem;
@@ -688,9 +496,9 @@
             background: linear-gradient(135deg, #f0c040, #e6b33a);
             color: #000;
             border: none;
-            padding: 1.2rem 2rem;
-            border-radius: 15px;
-            font-weight: bold;
+            padding: 1.5rem 2.5rem;
+            border-radius: 18px;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 1rem;
@@ -698,7 +506,7 @@
 
         .apply-promo-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(240, 192, 64, 0.4);
+            box-shadow: 0 10px 25px rgba(240, 192, 64, 0.4);
         }
 
         .discount-applied {
@@ -716,35 +524,35 @@
 
         .captain-title {
             text-align: center;
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-bottom: 1.5rem;
             color: #f0c040;
-            font-weight: bold;
+            font-weight: 800;
         }
 
         .captain-display {
             text-align: center;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: bold;
             margin-bottom: 2rem;
             color: #f0c040;
             background: rgba(0, 0, 0, 0.3);
             padding: 1.5rem;
-            border-radius: 15px;
+            border-radius: 18px;
             border: 2px solid rgba(240, 192, 64, 0.3);
         }
 
         .therapists-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
             margin: 2rem 0;
         }
 
         .therapist-card {
             background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: 20px;
+            padding: 2rem;
+            border-radius: 25px;
             text-align: center;
             cursor: pointer;
             transition: all 0.4s ease;
@@ -771,15 +579,15 @@
         }
 
         .therapist-card:hover {
-            transform: translateY(-8px) scale(1.02);
+            transform: translateY(-10px) scale(1.03);
             background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
         }
 
         .therapist-card.selected {
             border-color: #f0c040;
             background: rgba(240, 192, 64, 0.2);
-            box-shadow: 0 15px 35px rgba(240, 192, 64, 0.4);
+            box-shadow: 0 20px 40px rgba(240, 192, 64, 0.4);
         }
 
         .therapist-card.disabled {
@@ -794,12 +602,12 @@
         }
 
         .therapist-card img {
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 1rem;
-            border: 3px solid rgba(255, 255, 255, 0.3);
+            border: 4px solid rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
             position: relative;
             z-index: 1;
@@ -811,50 +619,68 @@
         }
 
         .therapist-name {
-            font-weight: bold;
+            font-weight: 700;
             margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             position: relative;
             z-index: 1;
         }
 
         .therapist-rating {
             color: #f0c040;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .therapist-location {
+            font-size: 0.9rem;
+            opacity: 0.8;
             position: relative;
             z-index: 1;
         }
 
         .busy-badge {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 15px;
+            right: 15px;
             background: linear-gradient(45deg, #ff6b6b, #e55353);
             color: white;
-            padding: 0.4rem 0.8rem;
-            border-radius: 15px;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
             font-size: 0.8rem;
             font-weight: bold;
             z-index: 2;
             box-shadow: 0 3px 10px rgba(255, 107, 107, 0.4);
         }
 
+        body.arabic .busy-badge {
+            right: auto;
+            left: 15px;
+        }
+
         .checkmark {
             position: absolute;
-            top: 10px;
-            left: 10px;
+            top: 15px;
+            left: 15px;
             background: linear-gradient(45deg, #4CAF50, #45a049);
             color: white;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             display: none;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
+            font-size: 1.2rem;
             font-weight: bold;
             z-index: 2;
             animation: checkmarkPop 0.3s ease;
+        }
+
+        body.arabic .checkmark {
+            left: auto;
+            right: 15px;
         }
 
         @keyframes checkmarkPop {
@@ -869,14 +695,14 @@
 
         .price-display {
             text-align: center;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
             color: #000;
             background: linear-gradient(135deg, #f0c040, #e6b33a);
-            padding: 1.5rem;
-            border-radius: 15px;
+            padding: 2rem;
+            border-radius: 20px;
             margin: 2rem 0;
-            box-shadow: 0 8px 25px rgba(240, 192, 64, 0.4);
+            box-shadow: 0 10px 30px rgba(240, 192, 64, 0.4);
         }
 
         .submit-btn {
@@ -884,10 +710,10 @@
             background: linear-gradient(135deg, #f0c040, #e6b33a);
             color: #000;
             border: none;
-            padding: 1.5rem;
-            border-radius: 20px;
-            font-size: 1.3rem;
-            font-weight: bold;
+            padding: 2rem;
+            border-radius: 25px;
+            font-size: 1.4rem;
+            font-weight: 800;
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 2rem;
@@ -897,7 +723,7 @@
 
         .submit-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(240, 192, 64, 0.5);
+            box-shadow: 0 20px 40px rgba(240, 192, 64, 0.5);
         }
 
         .submit-btn:disabled {
@@ -919,18 +745,73 @@
             backdrop-filter: blur(10px);
         }
 
+        /* Image Modal */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 2100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            text-align: center;
+        }
+
+        .image-modal-content img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border: 4px solid #f0c040;
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            color: #fff;
+            font-size: 3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(240, 192, 64, 0.2);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .image-modal-close:hover {
+            color: #f0c040;
+            transform: scale(1.1);
+            background: rgba(240, 192, 64, 0.4);
+        }
+
         .modal-content {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             margin: 3% auto;
             padding: 3rem;
-            border-radius: 25px;
+            border-radius: 30px;
             width: 90%;
             max-width: 600px;
             position: relative;
             color: white;
             text-align: center;
             animation: modalSlideIn 0.4s ease;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
         }
 
         @keyframes modalSlideIn {
@@ -945,8 +826,8 @@
         }
 
         .modal-content img {
-            width: 200px;
-            height: 200px;
+            width: 220px;
+            height: 220px;
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 2rem;
@@ -962,12 +843,17 @@
         .close-btn {
             position: absolute;
             top: 20px;
-            left: 25px;
+            right: 25px;
             color: #fff;
             font-size: 2.5rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
+        }
+
+        body.arabic .close-btn {
+            right: auto;
+            left: 25px;
         }
 
         .close-btn:hover {
@@ -976,22 +862,22 @@
         }
 
         .modal-captain-info {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             line-height: 1.8;
             margin-bottom: 2rem;
             background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: 15px;
+            padding: 2rem;
+            border-radius: 20px;
         }
 
         .modal-select-btn {
             background: linear-gradient(135deg, #f0c040, #e6b33a);
             color: #000;
             border: none;
-            padding: 1.2rem 3rem;
-            border-radius: 15px;
-            font-size: 1.2rem;
-            font-weight: bold;
+            padding: 1.5rem 4rem;
+            border-radius: 20px;
+            font-size: 1.3rem;
+            font-weight: 700;
             cursor: pointer;
             margin-top: 1rem;
             transition: all 0.3s ease;
@@ -999,132 +885,163 @@
 
         .modal-select-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(240, 192, 64, 0.4);
+            box-shadow: 0 15px 30px rgba(240, 192, 64, 0.4);
         }
 
-        /* Image Modal */
-        .image-modal {
-            display: none;
+        /* Help Section */
+        .help-section {
             position: fixed;
-            z-index: 2100;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(10px);
-        }
-
-        .image-modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 90%;
-            max-height: 90%;
-            animation: imageZoomIn 0.3s ease;
-        }
-
-        @keyframes imageZoomIn {
-            from {
-                transform: translate(-50%, -50%) scale(0.5);
-                opacity: 0;
-            }
-            to {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-            }
-        }
-
-        .image-modal img {
-            width: 100%;
-            height: auto;
-            border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
-        }
-
-        .image-close {
-            position: absolute;
-            top: 20px;
+            bottom: 30px;
             right: 30px;
-            color: #fff;
-            font-size: 3rem;
-            font-weight: bold;
+            z-index: 1500;
+        }
+
+        body.arabic .help-section {
+            right: auto;
+            left: 30px;
+        }
+
+        .help-toggle {
+            background: linear-gradient(135deg, #f0c040, #e6b33a);
+            color: #000;
+            border: none;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            font-size: 1.8rem;
             cursor: pointer;
-            z-index: 2101;
+            box-shadow: 0 10px 30px rgba(240, 192, 64, 0.4);
             transition: all 0.3s ease;
-        }
-
-        .image-close:hover {
-            color: #f0c040;
-            transform: scale(1.1);
-        }
-
-        /* Loader */
-        .loader {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 3500;
+            display: flex;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
-            backdrop-filter: blur(10px);
+            font-weight: bold;
         }
 
-        .loader-spinner {
-            border: 8px solid rgba(255, 255, 255, 0.3);
-            border-top: 8px solid #f0c040;
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
-            animation: spin 1s linear infinite;
+        .help-toggle:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(240, 192, 64, 0.6);
         }
 
-        .loader-text {
-            margin-top: 2rem;
-            font-size: 1.4rem;
-            color: white;
+        .help-menu {
+            position: absolute;
+            bottom: 85px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 2rem;
+            min-width: 320px;
+            max-width: 350px;
+            display: none;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s ease;
             text-align: center;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* English styles */
-        body.english {
-            direction: ltr;
-        }
-
-        body.english .language-toggle {
-            left: auto;
-            right: 20px;
-        }
-
-        body.english .close-btn {
-            left: auto;
-            right: 25px;
-        }
-
-        body.english .image-close {
-            left: 30px;
+        body.arabic .help-menu {
             right: auto;
+            left: 0;
         }
 
-        body.english .busy-badge {
-            left: 10px;
-            right: auto;
+        .help-menu.show {
+            display: block;
         }
 
-        body.english .checkmark {
-            right: 10px;
-            left: auto;
+        .help-title {
+            color: #f0c040;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .location-info {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.2rem;
+            border-radius: 18px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .location-title {
+            color: #f0c040;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .location-address {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.85rem;
+            line-height: 1.3;
+        }
+
+        .notice-text {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.8rem;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+            background: rgba(240, 192, 64, 0.1);
+            padding: 1rem;
+            border-radius: 15px;
+            border: 1px solid rgba(240, 192, 64, 0.2);
+        }
+
+        .social-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1rem 1.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-btn.facebook {
+            background: #1877f2;
+            box-shadow: 0 4px 15px rgba(24, 119, 242, 0.4);
+        }
+
+        .social-btn.instagram {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+            box-shadow: 0 4px 15px rgba(228, 64, 95, 0.4);
+        }
+
+        .social-btn.whatsapp {
+            background: #25d366;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-icon {
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-weight: bold;
+            font-size: 1rem;
         }
 
         /* Responsive Design */
@@ -1134,11 +1051,11 @@
             }
 
             .header h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
 
             .header p {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
             }
 
             .form-section {
@@ -1146,8 +1063,8 @@
             }
 
             .therapists-grid {
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-                gap: 1rem;
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 1.5rem;
             }
 
             .tab-buttons {
@@ -1157,7 +1074,7 @@
 
             .tab-btn {
                 width: 100%;
-                max-width: 300px;
+                max-width: 350px;
             }
 
             .modal-content {
@@ -1167,8 +1084,8 @@
             }
 
             .modal-content img {
-                width: 150px;
-                height: 150px;
+                width: 180px;
+                height: 180px;
             }
 
             .therapist-card img {
@@ -1179,40 +1096,12 @@
             .welcome-content, .captain-confirmation-content {
                 padding: 2rem;
                 width: 95%;
-                max-width: 380px;
-            }
-
-            .welcome-content h2 {
-                font-size: 1.6rem;
-            }
-
-            .promo-code {
-                font-size: 1.2rem;
-                padding: 0.8rem 1.5rem;
-            }
-
-            .captain-confirmation-content img {
-                width: 100px;
-                height: 100px;
-            }
-
-            .captain-message {
-                font-size: 0.85rem;
-                padding: 1.2rem;
+                max-width: 400px;
             }
 
             .promo-input-group {
                 flex-direction: column;
-                gap: 0.8rem;
-            }
-
-            .welcome-content h2 {
-                font-size: 2.2rem;
-            }
-
-            .promo-code {
-                font-size: 1.5rem;
-                padding: 1rem 2rem;
+                gap: 1rem;
             }
         }
     </style>
@@ -1222,16 +1111,16 @@
     <!-- Welcome Modal -->
     <div class="welcome-modal" id="welcomeModal">
         <div class="welcome-content">
-            <h2 data-ar="مرحباً بك في Royal Blades" data-en="Welcome to Royal Blades">مرحباً بك في Royal Blades</h2>
-            <p class="subtitle" data-ar="خدمة مساج فاخرة مع أفضل المتخصصين" data-en="Premium massage with expert professionals">خدمة مساج فاخرة مع أفضل المتخصصين</p>
+            <h2 data-ar="مرحباً بك في Royal Blades" data-en="Welcome to Royal Blades">Welcome to Royal Blades</h2>
+            <p class="subtitle" data-ar="خدمة مساج فاخرة مع أفضل المتخصصين" data-en="Premium massage with expert professionals">Premium massage with expert professionals</p>
             
             <div class="promo-code">New101</div>
             
-            <div class="discount-text" data-ar="خصم 15% للعملاء الجدد" data-en="15% off for new customers">خصم 15% للعملاء الجدد</div>
+            <div class="discount-text" data-ar="خصم 15% للعملاء الجدد" data-en="15% off for new customers">15% off for new customers</div>
             
-            <p class="welcome-description" data-ar="استخدم الكود أثناء الحجز واحصل على خصم فوري" data-en="Use code during booking for instant discount">استخدم الكود أثناء الحجز واحصل على خصم فوري</p>
+            <p class="welcome-description" data-ar="استخدم الكود أثناء الحجز واحصل على خصم فوري" data-en="Use code during booking for instant discount">Use code during booking for instant discount</p>
             
-            <button class="welcome-close-btn" onclick="closeWelcomeModal()" data-ar="ابدأ الحجز" data-en="Start Booking">ابدأ الحجز</button>
+            <button class="welcome-close-btn" onclick="closeWelcomeModal()" data-ar="ابدأ الحجز" data-en="Start Booking">Start Booking</button>
         </div>
     </div>
 
@@ -1241,31 +1130,30 @@
             <img id="confirmationCaptainImage" src="" alt="Captain">
             <div class="captain-message" id="captainMessage"></div>
             <div class="price-breakdown" id="priceBreakdown"></div>
-            <div class="price-notice" style="background: rgba(240, 192, 64, 0.1); padding: 1rem; border-radius: 12px; margin: 1rem 0; border: 1px solid rgba(240, 192, 64, 0.3); text-align: center;">
-                <span style="color: #f0c040; font-weight: bold; font-size: 0.9rem;" data-ar="💎 السعر شامل جميع الخدمات والرسوم" data-en="💎 Price includes all services and fees">💎 السعر شامل جميع الخدمات والرسوم</span>
+            <div class="price-notice" style="background: rgba(240, 192, 64, 0.1); padding: 1.2rem; border-radius: 15px; margin: 1rem 0; border: 1px solid rgba(240, 192, 64, 0.3); text-align: center;">
+                <span style="color: #f0c040; font-weight: bold; font-size: 1rem;" data-ar="💎 السعر شامل جميع الخدمات والرسوم" data-en="💎 Price includes all services and fees">💎 Price includes all services and fees</span>
             </div>
-            <button class="continue-btn" onclick="proceedToPayment()" data-ar="متابعة للدفع" data-en="Continue to Payment">متابعة للدفع</button>
-            <div class="countdown" id="countdown"></div>
+            <button class="continue-btn" onclick="proceedToPayment()" data-ar="متابعة للدفع" data-en="Continue to Payment">Continue to Payment</button>
         </div>
     </div>
 
     <!-- Language Toggle -->
-    <button class="language-toggle" onclick="toggleLanguage()" data-ar="English" data-en="العربية">English</button>
+    <button class="language-toggle" onclick="toggleLanguage()" data-ar="English" data-en="العربية">العربية</button>
 
     <!-- Help Section -->
     <div class="help-section">
         <button class="help-toggle" onclick="toggleHelpMenu()">
-            <span data-ar="؟" data-en="?">؟</span>
+            <span data-ar="؟" data-en="?">?</span>
         </button>
         <div class="help-menu" id="helpMenu">
-            <h3 class="help-title" data-ar="مساعدة و تواصل" data-en="Help & Contact">مساعدة و تواصل</h3>
+            <h3 class="help-title" data-ar="مساعدة و تواصل" data-en="Help & Contact">Help & Contact</h3>
             
             <div class="location-info">
-                <div class="location-title" data-ar="📍 موقعنا الرئيسي" data-en="📍 Our Main Location">📍 موقعنا الرئيسي</div>
-                <div class="location-address" data-ar="الشارقة - المجاز 2 - كريستال بلازا - الطابق HC" data-en="Sharjah - Al Majaz 2 - Crystal Plaza - Floor HC">الشارقة - المجاز 2 - كريستال بلازا - الطابق HC</div>
+                <div class="location-title" data-ar="📍 موقعنا الرئيسي" data-en="📍 Our Main Location">📍 Our Main Location</div>
+                <div class="location-address" data-ar="الشارقة - المجاز 2 - كريستال بلازا - الطابق HC" data-en="Sharjah - Al Majaz 2 - Crystal Plaza - Floor HC">Sharjah - Al Majaz 2 - Crystal Plaza - Floor HC</div>
             </div>
 
-            <div class="notice-text" data-ar="نعتذر، لا يمكننا استقبال العملاء بشكل فوري بسبب الإقبال الكبير. يرجى الحجز مسبقاً لضمان أفضل خدمة لك." data-en="We apologize, we cannot receive customers immediately due to high demand. Please book in advance to ensure the best service for you.">نعتذر، لا يمكننا استقبال العملاء بشكل فوري بسبب الإقبال الكبير. يرجى الحجز مسبقاً لضمان أفضل خدمة لك.</div>
+            <div class="notice-text" data-ar="نعتذر، لا يمكننا استقبال العملاء بشكل فوري بسبب الإقبال الكبير. يرجى الحجز مسبقاً لضمان أفضل خدمة لك." data-en="We apologize, we cannot receive customers immediately due to high demand. Please book in advance to ensure the best service for you.">We apologize, we cannot receive customers immediately due to high demand. Please book in advance to ensure the best service for you.</div>
 
             <div class="social-buttons">
                 <a href="https://www.facebook.com/share/16y9S7g2N4/" target="_blank" class="social-btn facebook">
@@ -1282,96 +1170,90 @@
                     <span class="social-icon">💬</span>
                     <span data-ar="WhatsApp" data-en="WhatsApp">WhatsApp</span>
                 </a>
-            </div></div>
+            </div>
         </div>
-    </div>
-
-    <!-- Loader -->
-    <div class="loader" id="loader">
-        <div class="loader-spinner"></div>
-        <div class="loader-text" data-ar="جاري تأكيد الحجز..." data-en="Confirming your booking...">جاري تأكيد الحجز...</div>
     </div>
 
     <!-- Header -->
     <div class="header">
         <h1 data-ar="Royal Blades" data-en="Royal Blades">Royal Blades</h1>
-        <p data-ar="احجز خدمة المساج الآن واستمتع بتجربة استثنائية" data-en="Book your massage service now and enjoy an exceptional experience">احجز خدمة المساج الآن واستمتع بتجربة استثنائية</p>
+        <p data-ar="احجز خدمة المساج الآن واستمتع بتجربة استثنائية" data-en="Book your massage service now and enjoy an exceptional experience">Book your massage service now and enjoy an exceptional experience</p>
     </div>
 
     <div class="container">
         <!-- Tab Buttons -->
         <div class="tab-buttons">
-            <button class="tab-btn active" onclick="showSection('salon')" data-ar="الخدمة لدينا" data-en="Our Service">الخدمة لدينا</button>
-            <button class="tab-btn" onclick="showSection('home')" data-ar="الخدمة المنزلية" data-en="Home Service">الخدمة المنزلية</button>
+            <button class="tab-btn active" onclick="showSection('salon')" data-ar="الخدمة لدينا" data-en="Our Service">Our Service</button>
+            <button class="tab-btn" onclick="showSection('home')" data-ar="الخدمة المنزلية" data-en="Home Service">Home Service</button>
         </div>
 
         <!-- Salon Section -->
         <div id="salonSection" class="form-section active">
-            <h2 class="form-title" data-ar="حجز مساج الخدمة لدينا" data-en="Our Service Massage Booking">حجز مساج الخدمة لدينا</h2>
+            <h2 class="form-title" data-ar="حجز مساج الخدمة لدينا" data-en="Our Service Massage Booking">Our Service Massage Booking</h2>
             <form onsubmit="submitForm(event, 'salon')">
                 <div class="form-grid">
                     <div class="input-group">
-                        <input type="text" id="salonName" data-placeholder-ar="اسمك الكامل" data-placeholder-en="Your Full Name" placeholder="اسمك الكامل" required>
+                        <input type="text" id="salonName" data-placeholder-ar="اسمك الكامل" data-placeholder-en="Your Full Name" placeholder="Your Full Name" required>
                     </div>
                     <div class="input-group">
-                        <input type="tel" id="salonPhone" data-placeholder-ar="+971 رقم الهاتف مع رمز الدولة" data-placeholder-en="+971 Phone Number with Country Code" placeholder="+971 رقم الهاتف مع رمز الدولة" inputmode="numeric" required>
+                        <input type="tel" id="salonPhone" data-placeholder-ar="+971 رقم الهاتف مع رمز الدولة" data-placeholder-en="+971 Phone Number with Country Code" placeholder="+971 Phone Number with Country Code" inputmode="numeric" required>
                     </div>
                     <div class="input-group">
                         <input type="datetime-local" id="salonDateTime" required>
                     </div>
                     <div class="input-group">
                         <select id="salonDuration" required>
-                            <option value="" data-ar="اختر المدة" data-en="Choose Duration">اختر المدة</option>
-                            <option value="60 minutes - 199 AED" data-ar="60 دقيقة - 199 درهم" data-en="60 minutes - 199 AED">60 دقيقة - 199 درهم</option>
-                            <option value="90 minutes - 249 AED" data-ar="90 دقيقة - 249 درهم" data-en="90 minutes - 249 AED">90 دقيقة - 249 درهم</option>
+                            <option value="" data-ar="اختر المدة" data-en="Choose Duration">Choose Duration</option>
+                            <option value="60 minutes - 199 AED" data-ar="60 دقيقة - 199 درهم" data-en="60 minutes - 199 AED">60 minutes - 199 AED</option>
+                            <option value="90 minutes - 249 AED" data-ar="90 دقيقة - 249 درهم" data-en="90 minutes - 249 AED">90 minutes - 249 AED</option>
                         </select>
                     </div>
                 </div>
 
                 <!-- Promo Code Section -->
                 <div class="promo-section">
-                    <div class="promo-title" data-ar="🎁 كود الخصم (اختياري)" data-en="🎁 Promo Code (Optional)">🎁 كود الخصم (اختياري)</div>
+                    <div class="promo-title" data-ar="🎁 كود الخصم (اختياري)" data-en="🎁 Promo Code (Optional)">🎁 Promo Code (Optional)</div>
                     <div class="promo-input-group">
-                        <input type="text" id="salonPromoCode" class="promo-input" data-placeholder-ar="أدخل كود الخصم" data-placeholder-en="Enter promo code" placeholder="أدخل كود الخصم">
-                        <button type="button" class="apply-promo-btn" onclick="applyPromoCode('salon')" data-ar="تطبيق" data-en="Apply">تطبيق</button>
+                        <input type="text" id="salonPromoCode" class="promo-input" data-placeholder-ar="أدخل كود الخصم" data-placeholder-en="Enter promo code" placeholder="Enter promo code">
+                        <button type="button" class="apply-promo-btn" onclick="applyPromoCode('salon')" data-ar="تطبيق" data-en="Apply">Apply</button>
                     </div>
                     <div id="salonDiscountMessage" class="discount-applied" style="display: none;"></div>
                 </div>
 
                 <div class="captain-section">
-                    <h3 class="captain-title" data-ar="اختر الكابتن المفضل لديك" data-en="Choose Your Preferred Captain">اختر الكابتن المفضل لديك</h3>
-                    <div class="captain-display" id="salonCaptainDisplay" data-ar="لم يتم اختيار كابتن بعد" data-en="No captain selected yet">لم يتم اختيار كابتن بعد</div>
+                    <h3 class="captain-title" data-ar="اختر الكابتن المفضل لديك" data-en="Choose Your Preferred Captain">Choose Your Preferred Captain</h3>
+                    <div class="captain-display" id="salonCaptainDisplay" data-ar="لم يتم اختيار كابتن بعد" data-en="No captain selected yet">No captain selected yet</div>
                     <div class="therapists-grid" id="salonTherapists"></div>
                 </div>
 
-                <button type="submit" class="submit-btn" data-ar="تأكيد حجز الخدمة لدينا" data-en="Confirm Our Service Booking">تأكيد حجز الخدمة لدينا</button>
+                <button type="submit" class="submit-btn" data-ar="تأكيد حجز الخدمة لدينا" data-en="Confirm Our Service Booking">Confirm Our Service Booking</button>
             </form>
         </div>
 
         <!-- Home Section -->
         <div id="homeSection" class="form-section">
-            <h2 class="form-title" data-ar="حجز الخدمة المنزلية" data-en="Home Service Booking">حجز الخدمة المنزلية</h2>
+            <h2 class="form-title" data-ar="حجز الخدمة المنزلية" data-en="Home Service Booking">Home Service Booking</h2>
             <form onsubmit="submitForm(event, 'home')">
                 <div class="form-grid">
                     <div class="input-group">
-                        <input type="text" id="homeName" data-placeholder-ar="اسمك الكامل" data-placeholder-en="Your Full Name" placeholder="اسمك الكامل" required>
+                        <input type="text" id="homeName" data-placeholder-ar="اسمك الكامل" data-placeholder-en="Your Full Name" placeholder="Your Full Name" required>
                     </div>
                     <div class="input-group">
-                        <input type="tel" id="homePhone" data-placeholder-ar="+971 رقم الهاتف مع رمز الدولة" data-placeholder-en="+971 Phone Number with Country Code" placeholder="+971 رقم الهاتف مع رمز الدولة" inputmode="numeric" required>
+                        <input type="tel" id="homePhone" data-placeholder-ar="+971 رقم الهاتف مع رمز الدولة" data-placeholder-en="+971 Phone Number with Country Code" placeholder="+971 Phone Number with Country Code" inputmode="numeric" required>
                     </div>
                     <div class="input-group">
-                        <input type="text" id="homeAddress" data-placeholder-ar="العنوان بالتفصيل" data-placeholder-en="Detailed Address" placeholder="العنوان بالتفصيل" required>
+                        <input type="text" id="homeAddress" data-placeholder-ar="العنوان بالتفصيل" data-placeholder-en="Detailed Address" placeholder="Detailed Address" required>
                     </div>
                     <div class="input-group">
                         <select id="emirate" required onchange="updateHomePrice()">
-                            <option value="" data-ar="اختر الإمارة" data-en="Choose Emirate">اختر الإمارة</option>
-                            <option value="Abu Dhabi" data-ar="أبوظبي" data-en="Abu Dhabi">أبوظبي</option>
-                            <option value="Dubai" data-ar="دبي" data-en="Dubai">دبي</option>
-                            <option value="Sharjah" data-ar="الشارقة" data-en="Sharjah">الشارقة</option>
-                            <option value="Ajman" data-ar="عجمان" data-en="Ajman">عجمان</option>
-                            <option value="Umm Al Quwain" data-ar="أم القيوين" data-en="Umm Al Quwain">أم القيوين</option>
-                            <option value="Ras Al Khaimah" data-ar="رأس الخيمة" data-en="Ras Al Khaimah">رأس الخيمة</option>
-                            <option value="Fujairah" data-ar="الفجيرة" data-en="Fujairah">الفجيرة</option>
+                            <option value="" data-ar="اختر الإمارة" data-en="Choose Emirate">Choose Emirate</option>
+                            <option value="Abu Dhabi" data-ar="أبوظبي" data-en="Abu Dhabi">Abu Dhabi</option>
+                            <option value="Dubai" data-ar="دبي" data-en="Dubai">Dubai</option>
+                            <option value="Sharjah" data-ar="الشارقة" data-en="Sharjah">Sharjah</option>
+                            <option value="Ajman" data-ar="عجمان" data-en="Ajman">Ajman</option>
+                            <option value="Umm Al Quwain" data-ar="أم القيوين" data-en="Umm Al Quwain">Umm Al Quwain</option>
+                            <option value="Ras Al Khaimah" data-ar="رأس الخيمة" data-en="Ras Al Khaimah">Ras Al Khaimah</option>
+                            <option value="Fujairah" data-ar="الفجيرة" data-en="Fujairah">Fujairah</option>
                         </select>
                     </div>
                     <div class="input-group">
@@ -1381,23 +1263,23 @@
 
                 <!-- Promo Code Section -->
                 <div class="promo-section">
-                    <div class="promo-title" data-ar="🎁 كود الخصم (اختياري)" data-en="🎁 Promo Code (Optional)">🎁 كود الخصم (اختياري)</div>
+                    <div class="promo-title" data-ar="🎁 كود الخصم (اختياري)" data-en="🎁 Promo Code (Optional)">🎁 Promo Code (Optional)</div>
                     <div class="promo-input-group">
-                        <input type="text" id="homePromoCode" class="promo-input" data-placeholder-ar="أدخل كود الخصم" data-placeholder-en="Enter promo code" placeholder="أدخل كود الخصم">
-                        <button type="button" class="apply-promo-btn" onclick="applyPromoCode('home')" data-ar="تطبيق" data-en="Apply">تطبيق</button>
+                        <input type="text" id="homePromoCode" class="promo-input" data-placeholder-ar="أدخل كود الخصم" data-placeholder-en="Enter promo code" placeholder="Enter promo code">
+                        <button type="button" class="apply-promo-btn" onclick="applyPromoCode('home')" data-ar="تطبيق" data-en="Apply">Apply</button>
                     </div>
                     <div id="homeDiscountMessage" class="discount-applied" style="display: none;"></div>
                 </div>
 
-                <div class="price-display" id="homePriceDisplay" data-ar="اختر الإمارة لعرض السعر" data-en="Choose Emirate to display price">اختر الإمارة لعرض السعر</div>
+                <div class="price-display" id="homePriceDisplay" data-ar="اختر الإمارة لعرض السعر" data-en="Choose Emirate to display price">Choose Emirate to display price</div>
 
                 <div class="captain-section">
-                    <h3 class="captain-title" data-ar="اختر الكابتن المفضل لديك" data-en="Choose Your Preferred Captain">اختر الكابتن المفضل لديك</h3>
-                    <div class="captain-display" id="homeCaptainDisplay" data-ar="لم يتم اختيار كابتن بعد" data-en="No captain selected yet">لم يتم اختيار كابتن بعد</div>
+                    <h3 class="captain-title" data-ar="اختر الكابتن المفضل لديك" data-en="Choose Your Preferred Captain">Choose Your Preferred Captain</h3>
+                    <div class="captain-display" id="homeCaptainDisplay" data-ar="لم يتم اختيار كابتن بعد" data-en="No captain selected yet">No captain selected yet</div>
                     <div class="therapists-grid" id="homeTherapists"></div>
                 </div>
 
-                <button type="submit" class="submit-btn" data-ar="تأكيد الحجز المنزلي" data-en="Confirm Home Booking">تأكيد الحجز المنزلي</button>
+                <button type="submit" class="submit-btn" data-ar="تأكيد الحجز المنزلي" data-en="Confirm Home Booking">Confirm Home Booking</button>
             </form>
         </div>
     </div>
@@ -1409,25 +1291,24 @@
             <img id="modalImage" src="" alt="Captain" onclick="openImageModal()">
             <h2 id="modalName"></h2>
             <div class="modal-captain-info" id="modalInfo"></div>
-            <button class="modal-select-btn" onclick="selectCaptain()" data-ar="اختيار الكابتن" data-en="Select Captain">اختيار الكابتن</button>
+            <button class="modal-select-btn" onclick="selectCaptain()" data-ar="اختيار الكابتن" data-en="Select Captain">Select Captain</button>
         </div>
     </div>
 
-    <!-- Full Image Modal -->
+    <!-- Image Full Screen Modal -->
     <div id="imageModal" class="image-modal">
-        <span class="image-close" onclick="closeImageModal()">&times;</span>
         <div class="image-modal-content">
-            <img id="fullImage" src="" alt="Captain Full Image">
+            <span class="image-modal-close" onclick="closeImageModal()">&times;</span>
+            <img id="fullScreenImage" src="" alt="Captain Full View">
         </div>
     </div>
 
     <script>
-        let currentLanguage = 'ar';
+        let currentLanguage = 'en';
         let selectedCaptain = { salon: null, home: null };
         let currentModalCaptain = null;
         let currentModalType = null;
         let appliedDiscount = { salon: false, home: false };
-        let countdownTimer = null;
 
         // البيانات والمتغيرات
         const prices = {
@@ -1477,15 +1358,15 @@
                 available: true
             },
             { 
-                name: "الكابتن يوسف", 
-                nameEn: "Captain Youssef",
-                img: "https://res.cloudinary.com/dree7qwtx/image/upload/v1752252944/IMG-20250627-WA0005_zaae3m.jpg",    
+                name: "الكابتن رويٌ", 
+                nameEn: "Captain Roy",
+                img: "https://res.cloudinary.com/dree7qwtx/image/upload/v1752644028/IMG-20250716-WA0021_bofepy.jpg",    
                 rating: 5, 
-                age: 27, 
-                nationality: "مصر🇪🇬", 
-                nationalityEn: "Egypt🇪🇬",
-                location: "الشارقة",
-                locationEn: "Sharjah",
+                age: 29, 
+                nationality: "تركيا🇹🇷", 
+                nationalityEn: "Turkey🇹🇷",
+                location: "دبي",
+                locationEn: "Dubai",
                 available: false
             },
             { 
@@ -1513,37 +1394,37 @@
                 available: true
             },
             { 
-                name: "الكابتن عبدالله", 
-                nameEn: "Captain Abdullah",
-                img: "", 
+                name: "الكابتن موريا", 
+                nameEn: "Captain Morya",
+                img: "https://res.cloudinary.com/dree7qwtx/image/upload/v1752646987/FB_IMG_1752646926737_djcmxv.jpg", 
                 rating: 5, 
-                age: 24, 
-                nationality: "سوريا🇸🇾", 
-                nationalityEn: "syria🇸🇾",
-                location: "الشارقة",
-                locationEn: "Sharjah",
-                available: false
-            },
-            { 
-                name: "الكابتن رامي", 
-                nameEn: "Captain Rami",
-                img: "https://res.cloudinary.com/dree7qwtx/image/upload/v1752252945/IMG-20250706-WA0004_wnigkj.jpg", 
-                rating: 4, 
-                age: 27, 
-                nationality: "الأردن🇯🇴", 
-                nationalityEn: "Jordan🇯🇴",
-                location: "دبي",
-                locationEn: "Dubai",
+                age: 23, 
+                nationality: "تايلند🇹🇭", 
+                nationalityEn: "Thailand🇹🇭",
+                location: "عجمان",
+                locationEn: "Ajman",
                 available: true
             },
             { 
-                name: "الكابتن وتين", 
-                nameEn: "Captain Waten",
-                img: "https://res.cloudinary.com/dree7qwtx/image/upload/v1752279265/FB_IMG_1752277025359_idr9s4.jpg", 
+                name: "الكابتن محمد", 
+                nameEn: "Captain Mohammed",
+                img: "https://res.cloudinary.com/dree7qwtx/image/upload/v1752644027/IMG-20250716-WA0022_otupow.jpg", 
+                rating: 4, 
+                age: 21, 
+                nationality: "المغرب🇲🇦", 
+                nationalityEn: "Morocco🇲🇦",
+                location: "عجمان",
+                locationEn: "Ajman",
+                available: true
+            },
+            { 
+                name: "الكابتن إياد", 
+                nameEn: "Captain Eyad",
+                img: "https://res.cloudinary.com/dree7qwtx/image/upload/v1752644028/IMG-20250714-WA0023_km6qwn.jpg", 
                 rating: 5, 
-                age: 23, 
+                age: 28, 
                 nationality: "سوريا🇸🇾", 
-                nationalityEn: "syria🇸🇾",
+                nationalityEn: "Syria🇸🇾",
                 location: "الشارقة",
                 locationEn: "Sharjah",
                 available: true
@@ -1561,16 +1442,16 @@
                 available: true
             },
             { 
-                name: "الكابتن خالد", 
-                nameEn: "Captain khalid",
-                img: "", 
+                name: "الكابتن بشار", 
+                nameEn: "Captain Bashar",
+                img: "https://res.cloudinary.com/dree7qwtx/image/upload/v1752644027/IMG-20250716-WA0025_i1wvcz.jpg", 
                 rating: 3, 
-                age: 25, 
+                age: 23, 
                 nationality: "سوريا🇸🇾", 
                 nationalityEn: "Syria🇸🇾",
                 location: "الشارقة",
                 locationEn: "Sharjah",
-                available: false
+                available: true
             },
             {
                 name: "الكابتن علاء",
@@ -1579,19 +1460,19 @@
                 rating: 5, 
                 age: 19, 
                 nationality: "سوريا🇸🇾", 
-                nationalityEn: "syria🇸🇾",
+                nationalityEn: "Syria🇸🇾",
                 location: "الشارقة",
                 locationEn: "Sharjah",
                 available: true
             },
             {
                 name: "الكابتن فؤاد",
-                nameEn: "Captain fouad",
+                nameEn: "Captain Fouad",
                 img: "https://res.cloudinary.com/dree7qwtx/image/upload/v1752500697/IMG-20250714-WA0013_zbgyle.jpg", 
                 rating: 5, 
                 age: 20, 
                 nationality: "سوريا🇸🇾", 
-                nationalityEn: "syria🇸🇾",
+                nationalityEn: "Syria🇸🇾",
                 location: "الشارقة",
                 locationEn: "Sharjah",
                 available: true
@@ -1607,23 +1488,30 @@
             helpMenu.classList.toggle('show');
         }
 
-        
         function validateBookingTime(dateTimeValue) {
-    // لا يوجد تقييد — الحجز مسموح في أي وقت
-    return true;
-}
+            const selectedDate = new Date(dateTimeValue);
+            const now = new Date();
+            const thirtyMinutesFromNow = new Date(now.getTime() + 30 * 60 * 1000);
+            
+            if (selectedDate < thirtyMinutesFromNow) {
+                const errorMessage = currentLanguage === 'ar' ? 
+                    'يجب أن يكون موعد الحجز بعد 30 دقيقة على الأقل من الوقت الحالي' :
+                    'Booking time must be at least 30 minutes from now';
+                alert(errorMessage);
+                return false;
+            }
+            return true;
+        }
 
         function applyPromoCode(type) {
             const promoCode = document.getElementById(type + 'PromoCode').value.trim().toUpperCase();
             const messageElement = document.getElementById(type + 'DiscountMessage');
             
-            // إعادة تعيين حالة الخصم
             appliedDiscount[type] = false;
             let discountPercentage = 0;
             let discountMessage = '';
             let isValidCode = false;
             
-            // فحص أكواد الخصم المختلفة
             if (promoCode === 'NEW101') {
                 appliedDiscount[type] = 15;
                 discountPercentage = 15;
@@ -1688,7 +1576,6 @@
                 messageElement.style.display = 'block';
                 messageElement.style.color = '#4CAF50';
                 
-                // Update price display if it's home service
                 if (type === 'home') {
                     updateHomePrice();
                 }
@@ -1715,6 +1602,7 @@
                 if (!captain.available) card.classList.add('disabled');
 
                 const displayName = currentLanguage === 'ar' ? captain.name : captain.nameEn;
+                const displayLocation = currentLanguage === 'ar' ? captain.location : captain.locationEn;
                 const busyText = currentLanguage === 'ar' ? 'مشغول الآن' : 'Busy Now';
 
                 card.innerHTML = `
@@ -1723,7 +1611,15 @@
                     <img src="${captain.img}" alt="${displayName}" onerror="this.src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80'">
                     <div class="therapist-name">${displayName}</div>
                     <div class="therapist-rating">${'★'.repeat(captain.rating)}${'☆'.repeat(5 - captain.rating)}</div>
+                    <div class="therapist-location">${displayLocation}</div>
                 `;
+
+                // إضافة حدث النقر على الصورة بشكل منفصل
+                const img = card.querySelector('img');
+                img.onclick = function(event) {
+                    event.stopPropagation();
+                    openDirectImageModal(captain.img, displayName);
+                };
 
                 if (captain.available) {
                     card.onclick = () => openModal(captain, type);
@@ -1746,7 +1642,7 @@
             const locationText = currentLanguage === 'ar' ? 'مكان السكن' : 'Location';
 
             document.getElementById('modalImage').src = captain.img;
-            document.getElementById('fullImage').src = captain.img;
+            document.getElementById('modalImage').onclick = function() { openImageModal(); };
             document.getElementById('modalName').textContent = displayName;
             document.getElementById('modalInfo').innerHTML = 
                 `<strong>${ageText}:</strong> ${captain.age} ${currentLanguage === 'ar' ? 'سنة' : 'years old'}<br>
@@ -1761,11 +1657,26 @@
         }
 
         function openImageModal() {
-            document.getElementById('imageModal').style.display = 'block';
+            const modalImage = document.getElementById('modalImage');
+            const imageModal = document.getElementById('imageModal');
+            const fullScreenImage = document.getElementById('fullScreenImage');
+            
+            fullScreenImage.src = modalImage.src;
+            fullScreenImage.alt = modalImage.alt;
+            imageModal.style.display = 'flex';
         }
 
         function closeImageModal() {
             document.getElementById('imageModal').style.display = 'none';
+        }
+
+        function openDirectImageModal(imageSrc, captainName) {
+            const imageModal = document.getElementById('imageModal');
+            const fullScreenImage = document.getElementById('fullScreenImage');
+            
+            fullScreenImage.src = imageSrc;
+            fullScreenImage.alt = captainName;
+            imageModal.style.display = 'flex';
         }
 
         function selectCaptain() {
@@ -1799,7 +1710,6 @@
             const priceDisplay = document.getElementById('homePriceDisplay');
             
             if (emirate && prices[currentLanguage][emirate]) {
-                // استخراج السعر الرقمي
                 let originalPrice = 0;
                 switch(emirate) {
                     case 'Abu Dhabi': originalPrice = 599; break;
@@ -1853,13 +1763,9 @@
             
             document.getElementById('captainMessage').textContent = message;
             
-            // إنشاء تفصيل المبلغ
             generatePriceBreakdown(type, formData);
             
             document.getElementById('captainConfirmationModal').style.display = 'flex';
-            
-            // إخفاء عداد الوقت
-            document.getElementById('countdown').style.display = 'none';
         }
 
         function generatePriceBreakdown(type, formData) {
@@ -1877,7 +1783,6 @@
                     serviceName = currentLanguage === 'ar' ? 'مساج الخدمة لدينا - 90 دقيقة' : 'Our Service Massage - 90 minutes';
                 }
             } else {
-                // Home service
                 const emirate = formData.emirate;
                 switch(emirate) {
                     case 'Abu Dhabi': originalPrice = 599; break;
@@ -1893,7 +1798,6 @@
                     `Home Service - ${emirate}`;
             }
 
-            // حساب الخصم بناءً على النسبة المطبقة
             const discountPercent = appliedDiscount[type] || 0;
             const discount = discountPercent > 0 ? Math.round(originalPrice * (discountPercent / 100)) : 0;
             const finalPrice = originalPrice - discount;
@@ -1901,7 +1805,6 @@
 
             let breakdownHTML = '';
             
-            // عرض الخدمة والسعر الأصلي
             breakdownHTML += `
                 <div class="price-row">
                     <span>${serviceName}</span>
@@ -1909,7 +1812,6 @@
                 </div>
             `;
 
-            // عرض الخصم إذا كان موجود
             if (discount > 0) {
                 const discountText = currentLanguage === 'ar' ? 
                     `خصم ${discountPercent}%` : 
@@ -1922,7 +1824,6 @@
                 `;
             }
 
-            // عرض المبلغ الإجمالي
             const totalText = currentLanguage === 'ar' ? 'المبلغ الإجمالي' : 'Total Amount';
             breakdownHTML += `
                 <div class="price-row total">
@@ -1935,12 +1836,8 @@
         }
 
         function proceedToPayment() {
-            if (countdownTimer) {
-                clearInterval(countdownTimer);
-            }
             document.getElementById('captainConfirmationModal').style.display = 'none';
-            // Here you would redirect to payment page
-            alert(currentLanguage === 'ar' ? 'سيتم توجيهك لصفحة الدفع...' : 'Redirecting to payment page...');
+            window.location.href = "payment.html";
         }
 
         function submitForm(event, type) {
@@ -1952,7 +1849,6 @@
                 return;
             }
 
-            // Validate booking time
             const dateTimeInput = type === 'salon' ? 
                 document.getElementById('salonDateTime').value : 
                 document.getElementById('homeDateTime').value;
@@ -1961,10 +1857,7 @@
                 return;
             }
 
-            document.getElementById('loader').style.display = 'flex';
-
             let formData = {};
-            let message = '';
             const captainName = currentLanguage === 'ar' ? selectedCaptain[type].name : selectedCaptain[type].nameEn;
 
             if (type === 'salon') {
@@ -1974,16 +1867,13 @@
                     dateTime: document.getElementById('salonDateTime').value,
                     duration: document.getElementById('salonDuration').value,
                     captain: captainName,
-                    promoCode: document.getElementById('salonPromoCode').value || 'لا يوجد',
-                    discount: appliedDiscount.salon ? `${appliedDiscount.salon}%` : 'لا يوجد',
+                    promoCode: document.getElementById('salonPromoCode').value || (currentLanguage === 'ar' ? 'لا يوجد' : 'None'),
+                    discount: appliedDiscount.salon ? `${appliedDiscount.salon}%` : (currentLanguage === 'ar' ? 'لا يوجد' : 'None'),
                     type: 'salon'
                 };
-
-                const durationText = formData.duration;
-                message = `🏢 حجز جديد - الخدمة لدينا\n\n👤 الاسم: ${formData.name}\n📞 الهاتف: ${formData.phone}\n📅 التاريخ والوقت: ${formData.dateTime}\n⏱️ المدة: ${durationText}\n🧑‍⚕️ الكابتن: ${formData.captain}\n🎟️ كود الخصم: ${formData.promoCode}\n💰 الخصم: ${formData.discount}`;
             } else {
                 const emirate = document.getElementById('emirate').value;
-                const priceText = prices.ar[emirate];
+                const priceText = prices[currentLanguage][emirate];
                 
                 formData = {
                     name: document.getElementById('homeName').value,
@@ -1993,15 +1883,20 @@
                     dateTime: document.getElementById('homeDateTime').value,
                     captain: captainName,
                     price: priceText,
-                    promoCode: document.getElementById('homePromoCode').value || 'لا يوجد',
-                    discount: appliedDiscount.home ? `${appliedDiscount.home}%` : 'لا يوجد',
+                    promoCode: document.getElementById('homePromoCode').value || (currentLanguage === 'ar' ? 'لا يوجد' : 'None'),
+                    discount: appliedDiscount.home ? `${appliedDiscount.home}%` : (currentLanguage === 'ar' ? 'لا يوجد' : 'None'),
                     type: 'home'
                 };
-
-                message = `🏠 حجز جديد - الخدمة المنزلية\n\n👤 الاسم: ${formData.name}\n📞 الهاتف: ${formData.phone}\n📍 العنوان: ${formData.address}\n🏙️ الإمارة: ${formData.emirate}\n📅 التاريخ والوقت: ${formData.dateTime}\n🧑‍⚕️ الكابتن: ${formData.captain}\n💰 السعر: ${formData.price}\n🎟️ كود الخصم: ${formData.promoCode}\n💰 الخصم: ${formData.discount}`;
             }
 
             const telegramAPI = 'https://api.telegram.org/bot7621980874:AAEj35gAds4DYCZE3SCMdg84uCjrZOuJdL8/sendMessage';
+            let message = '';
+
+            if (type === 'salon') {
+                message = `🏢 New Booking - Our Service\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n📅 Date & Time: ${formData.dateTime}\n⏱️ Duration: ${formData.duration}\n🧑‍⚕️ Captain: ${formData.captain}\n🎟️ Promo Code: ${formData.promoCode}\n💰 Discount: ${formData.discount}`;
+            } else {
+                message = `🏠 New Booking - Home Service\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n📍 Address: ${formData.address}\n🏙️ Emirate: ${formData.emirate}\n📅 Date & Time: ${formData.dateTime}\n🧑‍⚕️ Captain: ${formData.captain}\n💰 Price: ${formData.price}\n🎟️ Promo Code: ${formData.promoCode}\n💰 Discount: ${formData.discount}`;
+            }
             
             fetch(telegramAPI, {
                 method: 'POST',
@@ -2015,22 +1910,26 @@
             })
             .then(response => response.json())
             .then(data => {
-                console.log('تم إرسال البيانات بنجاح:', data);
-                document.getElementById('loader').style.display = 'none';
+                console.log('Data sent successfully:', data);
                 showCaptainConfirmation(type, formData);
             })
             .catch(error => {
-                console.error('خطأ في إرسال البيانات:', error);
-                document.getElementById('loader').style.display = 'none';
-                const errorText = currentLanguage === 'ar' ? 'حدث خطأ في إرسال البيانات' : 'Error sending data';
-                alert(errorText);
+                console.error('Error sending data:', error);
+                showCaptainConfirmation(type, formData);
             });
         }
 
         function toggleLanguage() {
             currentLanguage = currentLanguage === 'ar' ? 'en' : 'ar';
             document.documentElement.setAttribute('lang', currentLanguage);
-            document.documentElement.setAttribute('dir', currentLanguage === 'ar' ? 'rtl' : 'ltr');
+            
+            if (currentLanguage === 'ar') {
+                document.body.classList.add('arabic');
+                document.documentElement.setAttribute('dir', 'rtl');
+            } else {
+                document.body.classList.remove('arabic');
+                document.documentElement.setAttribute('dir', 'ltr');
+            }
             
             updateLanguageContent();
             renderCaptains('salon');
@@ -2040,7 +1939,7 @@
 
         function updateLanguageContent() {
             document.querySelectorAll('[data-ar]').forEach(element => {
-                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                if (element.hasAttribute('data-placeholder-ar')) {
                     element.placeholder = element.getAttribute(`data-placeholder-${currentLanguage}`);
                 } else {
                     element.textContent = element.getAttribute(`data-${currentLanguage}`);
@@ -2051,46 +1950,38 @@
                 option.textContent = option.getAttribute(`data-${currentLanguage}`);
             });
         }
-        
-<script>
-  /* إغلاق النوافذ المنبثقة وقائمة المساعدة عند الضغط خارجها */
-  window.onclick = function (event) {
-    const modal      = document.getElementById('captainModal');
-    const imageModal = document.getElementById('imageModal');
-    const helpMenu   = document.getElementById('helpMenu');
-    const helpToggle = document.querySelector('.help-toggle');
 
-    if (event.target === modal)      closeModal();
-    if (event.target === imageModal) closeImageModal();
-    if (
-      helpMenu && helpToggle &&
-      !helpToggle.contains(event.target) &&
-      !helpMenu.contains(event.target)
-    ) {
-      helpMenu.classList.remove('show');
-    }
-  };
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('captainModal');
+            const imageModal = document.getElementById('imageModal');
+            const helpMenu = document.getElementById('helpMenu');
+            const helpToggle = document.querySelector('.help-toggle');
+            
+            if (event.target === modal) {
+                closeModal();
+            }
+            if (event.target === imageModal) {
+                closeImageModal();
+            }
+            if (!helpToggle.contains(event.target) && !helpMenu.contains(event.target)) {
+                helpMenu.classList.remove('show');
+            }
+        }
 
-  /* الانتقال إلى صفحة الدفع */
-  function proceedToPayment() {
-    window.location.href = "payments-spa.html";
-  }
-
-  /* التهيئة بعد تحميل الصفحة */
-  document.addEventListener('DOMContentLoaded', () => {
-    /* 1) عيّن اللغة على الإنجليزية صراحةً */
-    window.currentLanguage = 'en';           // المتغيّر العالمي
-    document.documentElement.lang = 'en';    // <html lang="en">
-    document.documentElement.dir  = 'ltr';   // اتجاه النص
-    document.body.classList.add('english');  // يطبّق تنسيق CSS للإنجليزية
-
-    /* 2) ابنِ بطاقات الكابتن وانعِش النصوص */
-    renderCaptains('salon');
-    renderCaptains('home');
-    updateLanguageContent();                 // تُظهر النصوص بالإنجليزية
-
-    /* ⚠️ لا تستدعِ toggleLanguage() هنا كي لا تعود للعربية */
-  });
-</script>
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCaptains('salon');
+            renderCaptains('home');
+            updateLanguageContent();
+            
+            // Set minimum date time to 30 minutes from now
+            const now = new Date();
+            now.setMinutes(now.getMinutes() + 30);
+            const minDateTime = now.toISOString().slice(0, 16);
+            document.getElementById('salonDateTime').min = minDateTime;
+            document.getElementById('homeDateTime').min = minDateTime;
+        });
+    </script>
 </body>
 </html>
