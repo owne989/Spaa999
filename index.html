@@ -2052,7 +2052,7 @@
             });
         }
         
-  <script>
+<script>
   /* إغلاق النوافذ المنبثقة وقائمة المساعدة عند الضغط خارجها */
   window.onclick = function (event) {
     const modal      = document.getElementById('captainModal');
@@ -2078,14 +2078,18 @@
 
   /* التهيئة بعد تحميل الصفحة */
   document.addEventListener('DOMContentLoaded', () => {
-    // بناء بطاقات الكابتن
+    /* 1) عيّن اللغة على الإنجليزية صراحةً */
+    window.currentLanguage = 'en';           // المتغيّر العالمي
+    document.documentElement.lang = 'en';    // <html lang="en">
+    document.documentElement.dir  = 'ltr';   // اتجاه النص
+    document.body.classList.add('english');  // يطبّق تنسيق CSS للإنجليزية
+
+    /* 2) ابنِ بطاقات الكابتن وانعِش النصوص */
     renderCaptains('salon');
     renderCaptains('home');
+    updateLanguageContent();                 // تُظهر النصوص بالإنجليزية
 
-    // افتراضيًا: بدّل إلى الإنجليزية مرّة واحدة
-    if (currentLanguage === 'ar') {
-      toggleLanguage();   // تُصبح currentLanguage = 'en' وتُحدَّث النصوص
-    }
+    /* ⚠️ لا تستدعِ toggleLanguage() هنا كي لا تعود للعربية */
   });
 </script>
 </body>
