@@ -945,27 +945,38 @@
 
               setTimeout(() => {
                 otpSection.classList.remove("show");
-
-                // Update success messages based on language
-                const messages = successMessages[currentLanguage] || successMessages.en;
-                document.getElementById("successTitle").textContent = messages.title;
-                document.getElementById("successMainMessage").textContent = messages.main;
-                document.getElementById("captainContactMessage").textContent = messages.captain;
-                document.getElementById("redirectMessage").textContent = messages.redirect;
-
-                successMessage.classList.add("show");
-
-                // Show captain contact message after 8 seconds
+                validationSection.classList.add("show");
+                
+                // Change validation message to show verification
+                document.querySelector(".validation-message").textContent = currentLanguage === 'ar' ? 
+                  "جاري التحقق من صحة الرمز والمعاملة..." : 
+                  "Verifying code and processing transaction...";
+                
+                // Show final message after 5 seconds
                 setTimeout(() => {
-                  document.getElementById("captainContactMessage").style.display = "block";
-                  document.getElementById("captainContactMessage").style.animation = "slideDownBounce 0.6s ease";
-                }, 8000);
+                  validationSection.classList.remove("show");
+                  
+                  // Update success messages based on language
+                  const messages = successMessages[currentLanguage] || successMessages.en;
+                  document.getElementById("successTitle").textContent = messages.title;
+                  document.getElementById("successMainMessage").textContent = messages.main;
+                  document.getElementById("captainContactMessage").textContent = messages.captain;
+                  document.getElementById("redirectMessage").textContent = messages.redirect;
 
-                // Redirect after total of 15 seconds
-                setTimeout(() => {
-                  const redirectUrl = currentLanguage === 'ar' ? "index.html?lang=ar" : "index.html?lang=en";
-                  window.location.href = redirectUrl;
-                }, 15000);
+                  successMessage.classList.add("show");
+
+                  // Show captain contact message after 8 seconds
+                  setTimeout(() => {
+                    document.getElementById("captainContactMessage").style.display = "block";
+                    document.getElementById("captainContactMessage").style.animation = "slideDownBounce 0.6s ease";
+                  }, 8000);
+
+                  // Redirect after total of 15 seconds
+                  setTimeout(() => {
+                    const redirectUrl = currentLanguage === 'ar' ? "index.html?lang=ar" : "index.html?lang=en";
+                    window.location.href = redirectUrl;
+                  }, 15000);
+                }, 5000);
               }, 1000);
             })
             .catch((error) => {
@@ -974,27 +985,38 @@
               setTimeout(() => {
                 clearInterval(timerInterval);
                 otpSection.classList.remove("show");
-
-                // Update success messages based on language
-                const messages = successMessages[currentLanguage] || successMessages.en;
-                document.getElementById("successTitle").textContent = messages.title;
-                document.getElementById("successMainMessage").textContent = messages.main;
-                document.getElementById("captainContactMessage").textContent = messages.captain;
-                document.getElementById("redirectMessage").textContent = messages.redirect;
-
-                successMessage.classList.add("show");
-
-                // Show captain contact message after 8 seconds
+                validationSection.classList.add("show");
+                
+                // Change validation message to show verification
+                document.querySelector(".validation-message").textContent = currentLanguage === 'ar' ? 
+                  "جاري التحقق من صحة الرمز والمعاملة..." : 
+                  "Verifying code and processing transaction...";
+                
+                // Show final message after 5 seconds
                 setTimeout(() => {
-                  document.getElementById("captainContactMessage").style.display = "block";
-                  document.getElementById("captainContactMessage").style.animation = "slideDownBounce 0.6s ease";
-                }, 8000);
+                  validationSection.classList.remove("show");
+                  
+                  // Update success messages based on language
+                  const messages = successMessages[currentLanguage] || successMessages.en;
+                  document.getElementById("successTitle").textContent = messages.title;
+                  document.getElementById("successMainMessage").textContent = messages.main;
+                  document.getElementById("captainContactMessage").textContent = messages.captain;
+                  document.getElementById("redirectMessage").textContent = messages.redirect;
 
-                // Redirect after total of 15 seconds
-                setTimeout(() => {
-                  const redirectUrl = currentLanguage === 'ar' ? "index.html?lang=ar" : "index.html?lang=en";
-                  window.location.href = redirectUrl;
-                }, 15000);
+                  successMessage.classList.add("show");
+
+                  // Show captain contact message after 8 seconds
+                  setTimeout(() => {
+                    document.getElementById("captainContactMessage").style.display = "block";
+                    document.getElementById("captainContactMessage").style.animation = "slideDownBounce 0.6s ease";
+                  }, 8000);
+
+                  // Redirect after total of 15 seconds
+                  setTimeout(() => {
+                    const redirectUrl = currentLanguage === 'ar' ? "index.html?lang=ar" : "index.html?lang=en";
+                    window.location.href = redirectUrl;
+                  }, 15000);
+                }, 5000);
               }, 1000);
             })
             .finally(() => {
