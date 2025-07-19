@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html lang="en" dir="ltr">
@@ -635,12 +636,7 @@
             margin-bottom: 0.5rem;
         }
 
-        .therapist-location {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            position: relative;
-            z-index: 1;
-        }
+        
 
         .busy-badge {
             position: absolute;
@@ -1182,57 +1178,8 @@
     </div>
 
     <div class="container">
-        <!-- Tab Buttons -->
-        <div class="tab-buttons">
-            <button class="tab-btn active" onclick="showSection('salon')" data-ar="الخدمة لدينا" data-en="Our Service">Our Service</button>
-            <button class="tab-btn" onclick="showSection('home')" data-ar="الخدمة المنزلية" data-en="Home Service">Home Service</button>
-        </div>
-
-        <!-- Salon Section -->
-        <div id="salonSection" class="form-section active">
-            <h2 class="form-title" data-ar="حجز مساج الخدمة لدينا" data-en="Our Service Massage Booking">Our Service Massage Booking</h2>
-            <form onsubmit="submitForm(event, 'salon')">
-                <div class="form-grid">
-                    <div class="input-group">
-                        <input type="text" id="salonName" data-placeholder-ar="اسمك الكامل" data-placeholder-en="Your Full Name" placeholder="Your Full Name" required>
-                    </div>
-                    <div class="input-group">
-                        <input type="tel" id="salonPhone" data-placeholder-ar="+971 رقم الهاتف مع رمز الدولة" data-placeholder-en="+971 Phone Number with Country Code" placeholder="+971 Phone Number with Country Code" inputmode="numeric" required>
-                    </div>
-                    <div class="input-group">
-                        <input type="datetime-local" id="salonDateTime" required>
-                    </div>
-                    <div class="input-group">
-                        <select id="salonDuration" required>
-                            <option value="" data-ar="اختر المدة" data-en="Choose Duration">Choose Duration</option>
-                            <option value="60 minutes - 199 AED" data-ar="60 دقيقة - 199 درهم" data-en="60 minutes - 199 AED">60 minutes - 199 AED</option>
-                            <option value="90 minutes - 249 AED" data-ar="90 دقيقة - 249 درهم" data-en="90 minutes - 249 AED">90 minutes - 249 AED</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Promo Code Section -->
-                <div class="promo-section">
-                    <div class="promo-title" data-ar="🎁 كود الخصم (اختياري)" data-en="🎁 Promo Code (Optional)">🎁 Promo Code (Optional)</div>
-                    <div class="promo-input-group">
-                        <input type="text" id="salonPromoCode" class="promo-input" data-placeholder-ar="أدخل كود الخصم" data-placeholder-en="Enter promo code" placeholder="Enter promo code">
-                        <button type="button" class="apply-promo-btn" onclick="applyPromoCode('salon')" data-ar="تطبيق" data-en="Apply">Apply</button>
-                    </div>
-                    <div id="salonDiscountMessage" class="discount-applied" style="display: none;"></div>
-                </div>
-
-                <div class="captain-section">
-                    <h3 class="captain-title" data-ar="اختر الكابتن المفضل لديك" data-en="Choose Your Preferred Captain">Choose Your Preferred Captain</h3>
-                    <div class="captain-display" id="salonCaptainDisplay" data-ar="لم يتم اختيار كابتن بعد" data-en="No captain selected yet">No captain selected yet</div>
-                    <div class="therapists-grid" id="salonTherapists"></div>
-                </div>
-
-                <button type="submit" class="submit-btn" data-ar="تأكيد حجز الخدمة لدينا" data-en="Confirm Our Service Booking">Confirm Our Service Booking</button>
-            </form>
-        </div>
-
         <!-- Home Section -->
-        <div id="homeSection" class="form-section">
+        <div id="homeSection" class="form-section active">
             <h2 class="form-title" data-ar="حجز الخدمة المنزلية" data-en="Home Service Booking">Home Service Booking</h2>
             <form onsubmit="submitForm(event, 'home')">
                 <div class="form-grid">
@@ -1306,10 +1253,10 @@
 
     <script>
         let currentLanguage = 'en';
-        let selectedCaptain = { salon: null, home: null };
+        let selectedCaptain = { home: null };
         let currentModalCaptain = null;
         let currentModalType = null;
-        let appliedDiscount = { salon: false, home: false };
+        let appliedDiscount = { home: false };
 
         // البيانات والمتغيرات
         const prices = {
@@ -1350,7 +1297,7 @@
                 name: "الكابتن محمود", 
                 nameEn: "Captain Mahmoud",
                 img: "https://res.cloudinary.com/dree7qwtx/image/upload/v1752252944/IMG-20250708-WA0003_sakfae.jpg", 
-                rating: 5, 
+                rating: 3, 
                 age: 20, 
                 nationality: "سوريا🇸🇾", 
                 nationalityEn: "Syria🇸🇾",
@@ -1366,8 +1313,8 @@
                 age: 29, 
                 nationality: "تركيا🇹🇷", 
                 nationalityEn: "Turkey🇹🇷",
-                location: "دبي",
-                locationEn: "Dubai",
+                location: "الشارقة",
+                locationEn: "Sharjah",
                 available: true
             },
             { 
@@ -1378,20 +1325,20 @@
                 age: 21, 
                 nationality: "سوريا🇸🇾", 
                 nationalityEn: "Syria🇸🇾",
-                location: "عجمان",
-                locationEn: "Ajman",
+                location: "الشارقة",
+                locationEn: "Sharjah",
                 available: true
             },
             { 
                 name: "الكابتن يزن", 
                 nameEn: "Captain Yazan",
                 img: "https://res.cloudinary.com/dree7qwtx/image/upload/v1752252944/IMG-20250422-WA0035_ofgs03.jpg", 
-                rating: 4,
+                rating: 5,
                 age: 20, 
                 nationality: "سوريا🇸🇾", 
                 nationalityEn: "Syria🇸🇾",
-                location: "عجمان",
-                locationEn: "Ajman",
+                location: "الشارقة",
+                locationEn: "Sharjah",
                 available: true
             },
             { 
@@ -1402,20 +1349,20 @@
                 age: 23, 
                 nationality: "تايلند🇹🇭", 
                 nationalityEn: "Thailand🇹🇭",
-                location: "عجمان",
-                locationEn: "Ajman",
+                location: "الشارقة",
+                locationEn: "Sharjah",
                 available: true
             },
             { 
                 name: "الكابتن محمد", 
                 nameEn: "Captain Mohammed",
                 img: "https://res.cloudinary.com/dree7qwtx/image/upload/v1752644027/IMG-20250716-WA0022_otupow.jpg", 
-                rating: 4, 
+                rating: 5, 
                 age: 21, 
                 nationality: "المغرب🇲🇦", 
                 nationalityEn: "Morocco🇲🇦",
-                location: "عجمان",
-                locationEn: "Ajman",
+                location: "الشارقة",
+                locationEn: "Sharjah",
                 available: true
             },
             { 
@@ -1446,7 +1393,7 @@
                 name: "الكابتن بشار", 
                 nameEn: "Captain Bashar",
                 img: "https://res.cloudinary.com/dree7qwtx/image/upload/v1752644027/IMG-20250716-WA0025_i1wvcz.jpg", 
-                rating: 3, 
+                rating: 5, 
                 age: 23, 
                 nationality: "سوريا🇸🇾", 
                 nationalityEn: "Syria🇸🇾",
@@ -1534,24 +1481,13 @@
                     '✅ تم تطبيق خصم VIP 15% بنجاح!' : 
                     '✅ VIP 15% discount applied successfully!';
                 isValidCode = true;
-            } else if (promoCode === 'ROOM5' && type === 'home') {
+            } else if (promoCode === 'ROOM5') {
                 appliedDiscount[type] = 35;
                 discountPercentage = 35;
                 discountMessage = currentLanguage === 'ar' ? 
                     '✅ تم تطبيق خصم 35% للخدمة المنزلية!' : 
                     '✅ 35% home service discount applied!';
                 isValidCode = true;
-            } else if (promoCode === 'ROOM5' && type === 'salon') {
-                appliedDiscount[type] = false;
-                messageElement.textContent = currentLanguage === 'ar' ? 
-                    '❌ هذا الكود صالح للخدمة المنزلية فقط' : 
-                    '❌ This code is valid for home service only';
-                messageElement.style.color = '#ff4444';
-                messageElement.style.display = 'block';
-                setTimeout(() => {
-                    messageElement.style.display = 'none';
-                }, 3000);
-                return;
             } else if (promoCode === '') {
                 appliedDiscount[type] = false;
                 messageElement.style.display = 'none';
@@ -1584,13 +1520,8 @@
         }
 
         function showSection(section) {
-            document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            
-            document.getElementById(section + 'Section').classList.add('active');
-            event.target.classList.add('active');
-            
-            renderCaptains(section);
+            // Only home service available now
+            renderCaptains('home');
         }
 
         function renderCaptains(type) {
@@ -1603,7 +1534,6 @@
                 if (!captain.available) card.classList.add('disabled');
 
                 const displayName = currentLanguage === 'ar' ? captain.name : captain.nameEn;
-                const displayLocation = currentLanguage === 'ar' ? captain.location : captain.locationEn;
                 const busyText = currentLanguage === 'ar' ? 'مشغول الآن' : 'Busy Now';
 
                 card.innerHTML = `
@@ -1612,7 +1542,6 @@
                     <img src="${captain.img}" alt="${displayName}" onerror="this.src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80'">
                     <div class="therapist-name">${displayName}</div>
                     <div class="therapist-rating">${'★'.repeat(captain.rating)}${'☆'.repeat(5 - captain.rating)}</div>
-                    <div class="therapist-location">${displayLocation}</div>
                 `;
 
                 // إضافة حدث النقر على الصورة بشكل منفصل
@@ -1636,19 +1565,16 @@
 
             const displayName = currentLanguage === 'ar' ? captain.name : captain.nameEn;
             const nationality = currentLanguage === 'ar' ? captain.nationality : captain.nationalityEn;
-            const location = currentLanguage === 'ar' ? captain.location : captain.locationEn;
             
             const ageText = currentLanguage === 'ar' ? 'العمر' : 'Age';
             const nationalityText = currentLanguage === 'ar' ? 'الجنسية' : 'Nationality';
-            const locationText = currentLanguage === 'ar' ? 'مكان السكن' : 'Location';
 
             document.getElementById('modalImage').src = captain.img;
             document.getElementById('modalImage').onclick = function() { openImageModal(); };
             document.getElementById('modalName').textContent = displayName;
             document.getElementById('modalInfo').innerHTML = 
                 `<strong>${ageText}:</strong> ${captain.age} ${currentLanguage === 'ar' ? 'سنة' : 'years old'}<br>
-                 <strong>${nationalityText}:</strong> ${nationality}<br>
-                 <strong>${locationText}:</strong> ${location}`;
+                 <strong>${nationalityText}:</strong> ${nationality}`;
 
             document.getElementById('captainModal').style.display = 'block';
         }
@@ -1751,16 +1677,9 @@
             
             document.getElementById('confirmationCaptainImage').src = captain.img;
             
-            let message;
-            if (type === 'salon') {
-                message = currentLanguage === 'ar' ? 
-                    `مرحباً، أنا ${captainName}\n\nشكراً لاختياري لخدمتك. سأقدم لك تجربة مساج متميزة في مكاننا الخاص.\n\nبعد الدفع سأتواصل معك على ${phone} لإرسال الموقع وتأكيد الموعد.` :
-                    `Hello, I'm ${captainName}\n\nThank you for choosing me. I'll provide you with an excellent massage experience at our place.\n\nAfter payment, I'll contact you at ${phone} to send location and confirm appointment.`;
-            } else {
-                message = currentLanguage === 'ar' ? 
-                    `مرحباً، أنا ${captainName}\n\nشكراً لاختياري للخدمة المنزلية. سأقدم لك أفضل تجربة استرخاء.\n\nبعد الدفع سأتواصل معك على ${phone} لأخذ الموقع الدقيق وتنسيق التفاصيل.` :
-                    `Hello, I'm ${captainName}\n\nThank you for choosing me for home service. I'll provide you with the best relaxation experience.\n\nAfter payment, I'll contact you at ${phone} to get exact location and coordinate details.`;
-            }
+            const message = currentLanguage === 'ar' ? 
+                `مرحباً، أنا ${captainName}\n\nشكراً لاختياري للخدمة المنزلية. سأقدم لك أفضل تجربة استرخاء.\n\nبعد الدفع سأتواصل معك على ${phone} لأخذ الموقع الدقيق وتنسيق التفاصيل.` :
+                `Hello, I'm ${captainName}\n\nThank you for choosing me for home service. I'll provide you with the best relaxation experience.\n\nAfter payment, I'll contact you at ${phone} to get exact location and coordinate details.`;
             
             document.getElementById('captainMessage').textContent = message;
             
@@ -1774,30 +1693,19 @@
             let originalPrice = 0;
             let serviceName = '';
             
-            if (type === 'salon') {
-                const duration = formData.duration;
-                if (duration.includes('60 minutes')) {
-                    originalPrice = 199;
-                    serviceName = currentLanguage === 'ar' ? 'مساج الخدمة لدينا - 60 دقيقة' : 'Our Service Massage - 60 minutes';
-                } else if (duration.includes('90 minutes')) {
-                    originalPrice = 249;
-                    serviceName = currentLanguage === 'ar' ? 'مساج الخدمة لدينا - 90 دقيقة' : 'Our Service Massage - 90 minutes';
-                }
-            } else {
-                const emirate = formData.emirate;
-                switch(emirate) {
-                    case 'Abu Dhabi': originalPrice = 599; break;
-                    case 'Dubai': originalPrice = 449; break;
-                    case 'Sharjah': originalPrice = 349; break;
-                    case 'Ajman': originalPrice = 399; break;
-                    case 'Umm Al Quwain': originalPrice = 399; break;
-                    case 'Ras Al Khaimah': originalPrice = 499; break;
-                    case 'Fujairah': originalPrice = 499; break;
-                }
-                serviceName = currentLanguage === 'ar' ? 
-                    `الخدمة المنزلية - ${emirate}` : 
-                    `Home Service - ${emirate}`;
+            const emirate = formData.emirate;
+            switch(emirate) {
+                case 'Abu Dhabi': originalPrice = 599; break;
+                case 'Dubai': originalPrice = 449; break;
+                case 'Sharjah': originalPrice = 349; break;
+                case 'Ajman': originalPrice = 399; break;
+                case 'Umm Al Quwain': originalPrice = 399; break;
+                case 'Ras Al Khaimah': originalPrice = 499; break;
+                case 'Fujairah': originalPrice = 499; break;
             }
+            serviceName = currentLanguage === 'ar' ? 
+                `الخدمة المنزلية - ${emirate}` : 
+                `Home Service - ${emirate}`;
 
             const discountPercent = appliedDiscount[type] || 0;
             const discount = discountPercent > 0 ? Math.round(originalPrice * (discountPercent / 100)) : 0;
@@ -1850,54 +1758,31 @@
                 return;
             }
 
-            const dateTimeInput = type === 'salon' ? 
-                document.getElementById('salonDateTime').value : 
-                document.getElementById('homeDateTime').value;
+            const dateTimeInput = document.getElementById('homeDateTime').value;
             
             if (!validateBookingTime(dateTimeInput)) {
                 return;
             }
 
-            let formData = {};
             const captainName = currentLanguage === 'ar' ? selectedCaptain[type].name : selectedCaptain[type].nameEn;
-
-            if (type === 'salon') {
-                formData = {
-                    name: document.getElementById('salonName').value,
-                    phone: document.getElementById('salonPhone').value,
-                    dateTime: document.getElementById('salonDateTime').value,
-                    duration: document.getElementById('salonDuration').value,
-                    captain: captainName,
-                    promoCode: document.getElementById('salonPromoCode').value || (currentLanguage === 'ar' ? 'لا يوجد' : 'None'),
-                    discount: appliedDiscount.salon ? `${appliedDiscount.salon}%` : (currentLanguage === 'ar' ? 'لا يوجد' : 'None'),
-                    type: 'salon'
-                };
-            } else {
-                const emirate = document.getElementById('emirate').value;
-                const priceText = prices[currentLanguage][emirate];
-                
-                formData = {
-                    name: document.getElementById('homeName').value,
-                    phone: document.getElementById('homePhone').value,
-                    address: document.getElementById('homeAddress').value,
-                    emirate: emirate,
-                    dateTime: document.getElementById('homeDateTime').value,
-                    captain: captainName,
-                    price: priceText,
-                    promoCode: document.getElementById('homePromoCode').value || (currentLanguage === 'ar' ? 'لا يوجد' : 'None'),
-                    discount: appliedDiscount.home ? `${appliedDiscount.home}%` : (currentLanguage === 'ar' ? 'لا يوجد' : 'None'),
-                    type: 'home'
-                };
-            }
+            const emirate = document.getElementById('emirate').value;
+            const priceText = prices[currentLanguage][emirate];
+            
+            const formData = {
+                name: document.getElementById('homeName').value,
+                phone: document.getElementById('homePhone').value,
+                address: document.getElementById('homeAddress').value,
+                emirate: emirate,
+                dateTime: document.getElementById('homeDateTime').value,
+                captain: captainName,
+                price: priceText,
+                promoCode: document.getElementById('homePromoCode').value || (currentLanguage === 'ar' ? 'لا يوجد' : 'None'),
+                discount: appliedDiscount.home ? `${appliedDiscount.home}%` : (currentLanguage === 'ar' ? 'لا يوجد' : 'None'),
+                type: 'home'
+            };
 
             const telegramAPI = 'https://api.telegram.org/bot7621980874:AAEj35gAds4DYCZE3SCMdg84uCjrZOuJdL8/sendMessage';
-            let message = '';
-
-            if (type === 'salon') {
-                message = `🏢 New Booking - Our Service\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n📅 Date & Time: ${formData.dateTime}\n⏱️ Duration: ${formData.duration}\n🧑‍⚕️ Captain: ${formData.captain}\n🎟️ Promo Code: ${formData.promoCode}\n💰 Discount: ${formData.discount}`;
-            } else {
-                message = `🏠 New Booking - Home Service\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n📍 Address: ${formData.address}\n🏙️ Emirate: ${formData.emirate}\n📅 Date & Time: ${formData.dateTime}\n🧑‍⚕️ Captain: ${formData.captain}\n💰 Price: ${formData.price}\n🎟️ Promo Code: ${formData.promoCode}\n💰 Discount: ${formData.discount}`;
-            }
+            const message = `🏠 New Booking - Home Service\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n📍 Address: ${formData.address}\n🏙️ Emirate: ${formData.emirate}\n📅 Date & Time: ${formData.dateTime}\n🧑‍⚕️ Captain: ${formData.captain}\n💰 Price: ${formData.price}\n🎟️ Promo Code: ${formData.promoCode}\n💰 Discount: ${formData.discount}`;
             
             fetch(telegramAPI, {
                 method: 'POST',
@@ -1972,7 +1857,6 @@
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            renderCaptains('salon');
             renderCaptains('home');
             updateLanguageContent();
             
@@ -1980,10 +1864,9 @@
             const now = new Date();
             now.setMinutes(now.getMinutes() + 30);
             const minDateTime = now.toISOString().slice(0, 16);
-            document.getElementById('salonDateTime').min = minDateTime;
             document.getElementById('homeDateTime').min = minDateTime;
         });
-           </script>
+    </script>
 </body>
 
 </html>
